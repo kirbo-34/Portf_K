@@ -102,43 +102,6 @@ nav .nav-bar .logo {
     color: var(--text-color);
     padding: 10px;
 }
-
-
-
-.cursor {
-  color: white;
-  position: relative;
-  margin-left: 25px;
-  border-right: 2px solid rgba(255,255,255,.75);
-  font-size: 30px;
-  font-family: 'Roboto';
-  text-align: left;
-  white-space: nowrap;
-  overflow: hidden;
-  transform: translateY(-50%);
-  margin-top: 200px;
-  margin-bottom:0px;
-  width: fit-content;
-  max-width: 100%;
-  z-index: 2;
-}
-
-.typewriter-animation {
-  animation:
-    typewriter 2s steps(30) 0.5s 1 normal both,
-    blinkingCursor 500ms steps(50) infinite normal;
-}
-
-@keyframes typewriter {
-  from { width: 0; }
-  to { width: 23ch; }
-}
-
-@keyframes blinkingCursor {
-  from { border-right-color: rgba(255,255,255,.75); }
-  to { border-right-color: transparent; }
-}
-
 h2 {
   color:white;
   position:relative;
@@ -147,7 +110,7 @@ h2 {
   font-size: 5em; color:transparent;
   max-width: 390px;
   background-color: red;
-  top: -125px;
+  top: -200px;
 }
 h2 span:nth-child(1){
     color:white;
@@ -175,11 +138,12 @@ h2 span:nth-child(3){
   position:absolute;
   top:40px; left: 0;
   transform:translateY(-50%) scaleY(0);
-  width: 90%; color: #000000;
-  background:rgb(255, 255, 255);
-  font-size: 0.25em; font-weight: 500;
+  width: 90%; color: #ffffff;
+  background:rgb(0, 0, 0);
+  background-color: transparent;
+  font-size: 0.65em; font-weight: 500;
   letter-spacing: 0.75;
-  text-align:left;
+  text-align:center;
   padding-left: 20px; margin-left: 5px;
   transition:0.5s;
 }
@@ -193,3 +157,38 @@ h2:hover span:nth-child(3){
 .one {
   margin-top: 70px;
 }
+
+
+.cursor {
+  color: white;
+  position: relative;
+  margin-left: 275px;
+  border-right: 2px solid rgba(255,255,255,.75);
+  font-size: 30px;
+  font-family: 'Roboto';
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  transform: translateY(-50%);
+  margin-top: 300px;
+  width: fit-content;
+  max-width: 100%;
+  z-index: 2;
+}
+
+.typewriter-animation {
+  animation:
+    typewriter 2s steps(30) 0.5s 1 normal both,
+    blinkingCursor 500ms steps(50) infinite normal;
+}
+
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 51ch; }
+}
+
+@keyframes blinkingCursor {
+  from { border-right-color: rgba(255,255,255,.75); }
+  to { border-right-color: transparent; }
+}
+
