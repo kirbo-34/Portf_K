@@ -10,6 +10,7 @@
 
 html{
     scroll-behavior: smooth;
+
 }
 
 :root {
@@ -45,7 +46,7 @@ nav{
 
 nav a {
     color: white;
-    text-decoration: none;
+
     font-weight: 500;
     padding: 10px;
     z-index: 10000;
@@ -102,6 +103,7 @@ nav .nav-bar .logo {
 }
 
 .nav-links li a{
+    border:none;
     font-family: 'Roboto';
     position: relative;
     text-decoration: none;
@@ -110,6 +112,31 @@ nav .nav-bar .logo {
     text-decoration: none;
     color: var(--text-color);
     padding: 10px;
+}
+
+
+li a {
+  border: none;
+  font-family:'Roboto';
+  background: transparent;
+  border: none;
+  color: rgb(255, 253, 253);
+  font-size: 24px;
+  letter-spacing: 3px;
+  padding: 10px 15px;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: 0.3s;
+}
+
+
+li a:hover{
+  color: rgb(255, 255, 255);
+  transform: scale(1.5);
+  opacity: 1;
+  outline: none;
+  box-shadow: none;
+  border: none;
 }
 
 .cursor {
@@ -175,4 +202,24 @@ h3{
     text-decoration: none;
     font-weight: 500;
     padding: 10px;
+}
+
+
+.flaticon img {
+  width: 60px;
+}
+
+footer {
+  background-color: var(--cinza-escuro);
+  width: 100%;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  font-size: small;
+  color: var(--branco);
+  padding: 10px;
+}
+
+*:focus {
+  outline: none !important;
+  box-shadow: none !important;
 }
