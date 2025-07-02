@@ -1,47 +1,105 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <!-- =========================== -->
+  <!-- METADADOS E IMPORTAÇÕES -->
+  <!-- =========================== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shikoji</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="website icon" href="src/img/logo.png">
+  <link rel="stylesheet" href="src/fontawesome/css/all.min.css">
 </head>
+
 <body>
-    
-  <!-- Shader Canvas no fundo -->
-  <div id="shader-container"></div>
-
-  <!-- Camada escura transparente sobre o shader -->
-  <div id="escurecedor"></div>
-
-  <!-- Script WebGL -->
-  <script type="module" src="main.js"></script>
-
-  <!-- Conteúdo principal -->
-  <nav>
-    <div class="nav-bar">
-      <span class="logo"><a>Logo</a></span>
-      <div class="menu">
-        <ul class="nav-links">
-          <li><a href="#home" >Home</a></li>
-          <li><a href="#sobre" >Sobre</a></li>
-          <li><a href="#projetos" >Projetos</a></li>
-          <li><a href="#contato" >Contato</a></li>
-        </ul>
-      </div>
+  <!-- =========================== -->
+  <!-- CABEÇALHO E NAVEGAÇÃO -->
+  <!-- =========================== -->
+  <header>
+    <!-- Logo -->
+    <div class="flaticon">
+      <img src="src/img/logo.png" alt="Logo do site">
     </div>
-  </nav>
 
-  <section class="one">
-    <p class="cursor typewriter-animation">
-      Olá, Sou João Arrais, Cursante do curso de Informática, prazer.
-    </p>
-    <div class="quadrado">Tenho 16 anos, atualmente no segundo ano do ensino médio, e resumindo, decidi fazer Informática porque, ou era isso, ou era caixa do mateus. Tem mais sobre mim abaixo.
-        Á respeito de "carreira futura", será provavelmente desenvolvedor de softwares, posso dizer "full-stack", mas prefiro back-end. Atualmente estou morando em Açailandia, mas retorno á Dom-Eliseu aos finais de semana.
+    <!-- Menu tradicional (desktop) -->
+    <div class="butoes">
+      <nav class="butao">
+        <button data-page="home">Home</button>
+        <button data-page="sobre">Sobre</button>
+        <button data-page="projetos">Projetos</button>
+        <button data-page="contato">Contato</button>
+      </nav>
     </div>
-    <div>imagem</div>
-  </section>
 
+    <!-- Menu hamburguer (mobile) -->
+    <div class="navigation-wrapper">
+      <input id="toggleCheck" type="checkbox" />
+      <label for="toggleCheck">
+        <div class="button" id="menuBtn">
+          <i class="fa fa-bars fa-2x"></i>
+        </div>
+      </label>
+      <nav class="navigation">
+        <button data-page="home">Home</button>
+        <button data-page="sobre">Sobre</button>
+        <button data-page="projetos">Projetos</button>
+        <button data-page="contato">Contato</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- =========================== -->
+  <!-- CONTEÚDO PRINCIPAL        -->
+  <!-- =========================== -->
+  <main>
+    <section id="home" class="page">
+      <h2>Home</h2>
+      <p style="font-size: 24px; text-align: center;">
+        Certa manhã, ao despertar de sonhos intranquilos, Gregor Samsa encontrou-se em sua cama transformado em um inseto monstruoso...<br>
+        <p class="um" style="color: red; text-align: center;">The Metamorphosis - Franz Kafka</p>
+      </p>
+      <p>Bem-vindo ao nosso site sobre Galinhas!</p>
+      <p>Aqui você vai mergulhar no fascinante mundo dessas aves incríveis...</p>
+      
+    </section>
+
+    <section id="sobre" class="page">
+      <h2>Sobre</h2>
+      <strong>[1] As galinhas “falam” entre si!</strong>
+      <p>Galinhas têm um sistema de comunicação surpreendente...</p>
+      <strong>[2] Existem galinhas com penas nos pés...</strong>
+      <p>Algumas galinhas têm visuais super inusitados...</p>
+      <strong>[3] As galinhas têm memória e reconhecem rostos!</strong>
+      <p>Elas conseguem lembrar e diferenciar até 100 rostos...</p>
+      <strong>[4] Elas são descendentes diretas dos dinossauros!</strong>
+      <p>As galinhas compartilham ancestrais com os T-Rex.</p>
+    </section>
+
+    <section id="projetos" class="page">
+      <h2>Projetos</h2>
+      <p>Galinhas usam sons específicos para se comunicar...</p>
+      <p>Com um repertório cheio de sons únicos...</p>
+      <p>Galinhas são curiosas e inteligentes...</p>
+      <p>Apesar de serem aves, voam apenas curtas distâncias...</p>
+    </section>
+
+    <section id="contato" class="page">
+      <h2>Contato</h2>
+      <p>Galeria de imagens será adicionada aqui.</p>
+    </section>
+  </main>
+
+  <!-- =========================== -->
+  <!-- RODAPÉ                    -->
+  <!-- =========================== -->
+  <footer>
+    🐔@Galinha.com.br
+  </footer>
+
+  <!-- =========================== -->
+  <!-- SCRIPTS                     -->
+  <!-- =========================== -->
+  <script src="style.js"></script>
 </body>
 </html>
