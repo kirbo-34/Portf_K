@@ -5,174 +5,296 @@
     src: url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 }
 
-
-
-
-html{
-    scroll-behavior: smooth;
-
-}
-
+/* ===================================================
+   VARIÁVEIS GLOBAIS E FONTE PERSONALIZADA
+=================================================== */
 :root {
-    --body-color: #000000;
-    --nav-color: rgba(26, 26, 26, 0.942);
-    --side-nav: rgba(26, 26, 26, 0.942);
-    --text-color: white;
+  --preto: #121212;
+  --branco: #ffffff;
+  --cinza-claro: #eaeaea;
+  --cinza-medio: #b0b0b0;
+  --cinza-escuro: #2e2e2e;
+
+  --vermelho-profundo: #b22222;
+  --azul-petroleo: #264653;
+  --azul-claro: #5dade2;
 }
 
-
-body{
-    height:100vh;
-    background-color: var(--body-color);
-    font-family: 'Roboto';
+@font-face {
+  font-family: sangue;
+  src: url("src/font/Kingdom - Pixel Font v1_3.ttf") format("truetype");
 }
 
-
-nav{
-    position:fixed;
-    top:0;
-    left:0;
-    height:70px;
-    background-color: var(--nav-color);
-    width:100%;
-    box-shadow: 0px 5px 5px;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-    display: flex;
-    z-index: 10000;
-    
+/* ===================================================
+   RESET E CONFIGURAÇÕES GERAIS
+=================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
-
-nav a {
-    color: white;
-
-    font-weight: 500;
-    padding: 10px;
-    z-index: 10000;
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  scroll-behavior: smooth;
+  background-color: var(--branco);
+  font-family: sangue;
+  font-weight: 0;
+  color: var(--preto);
+  overflow-x: hidden;
 }
 
-nav .nav-bar{
-    position: relative;
-    height: 100%;
-    max-width: 1000px;
-    width: 100%;
-    background-color: --nav-color;
-    margin: 0 auto; 
-    padding: 0 30px;
-    background-color: var(--nav-color);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    z-index: 10000;
-}
-.nav-bar .nav-links{
-    display: flex;
-    position: relative;
-    list-style: none;
-    margin-left: auto;
-    z-index: 10000;
+body::-webkit-scrollbar {
+  display: none;
 }
 
-nav .nav-bar .logo {
-    font-size: 25px;
-    font-weight: 500;
-    color: var(--text-color);
-    text-decoration: none;
-    z-index: 10000;
+main {
+  flex: 1;
 }
 
-
-.quadrado{
-    width:750px;
-    height:300px;
-    color:var(--text-color);
-    background-color: rgba(0, 0, 0, 0.767);
-    font-size:2em;
-    font-family: 'Rubik';
-    border: 6px solid --nav-color;
-    border-radius: 5%;
-    padding: 10px;      /* espaçamento interno */
-    overflow: auto;     /* para criar barra de rolagem se o texto for maior */
-    word-wrap: break-word; /* quebra palavras grandes que poderiam vazar */
+/* ===================================================
+   TIPOGRAFIA
+=================================================== */
+h2 {
+  color: var(--azul-petroleo);
+  margin-bottom: 10px;
 }
 
-.nav-bar .nav-links li{
-    list-style:none;
-    margin: 0 5px;
+p {
+  color: var(--preto);
+  padding-top: 5px;
+  padding-bottom: 10px;
 }
 
-.nav-links li a{
-    border:none;
-    font-family: 'Roboto';
-    position: relative;
-    text-decoration: none;
-    font-size: 17px;
-    font-weight: 400;
-    text-decoration: none;
-    color: var(--text-color);
-    padding: 10px;
+/* ===================================================
+   HEADER E NAVEGAÇÃO TRADICIONAL
+=================================================== */
+header {
+  display: flex;
+  background-color: var(--cinza-medio);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  position: fixed;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  padding: 0;
 }
 
+.flaticon img {
+  flex: 1;
+  width: 60px;
+}
 
-li a {
-  border: none;
-  font-family:'Roboto';
+.butoes {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav.butao button {
+  font-family: sangue;
   background: transparent;
   border: none;
-  color: rgb(255, 253, 253);
-  font-size: 24px;
+  color: red;
+  font-size: 28px;
   letter-spacing: 3px;
   padding: 10px 15px;
   cursor: pointer;
-  opacity: 0.6;
-  transition: 0.3s;
+  transition: 0.2s;
 }
 
+nav.butao button:hover {
+  font-weight: 500;
+  color: red;
+  transform: scale(1.3);
+  text-shadow: 0 0 5px rgba(255, 0, 0, 0.5), 0 0 10px rgba(255, 0, 0, 0.5);
 
-li a:hover{
-  color: rgb(255, 255, 255);
-  transform: scale(1.5);
-  opacity: 1;
-  outline: none;
-  box-shadow: none;
-  border: none;
 }
 
-.cursor {
-  color: white;
+/* ===================================================
+   SEÇÕES SPA
+=================================================== */
+#home, #projetos {
+  background-color: var(--cinza-claro);
+  padding: 20px;
+  font-size: 20px;
+  letter-spacing: 2px;
+}
+
+#sobre, #contato {
+  background-color: var(--cinza-claro);
+  padding: 20px;
+  font-size: 20px;
+  letter-spacing: 2px;
+}
+
+#home, #sobre, #projetos, #contato {
+  scroll-margin-top: 70px;
+  margin-top: 61px;
+  width: 100%;
+  height: 100vh;
+}
+
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+}
+
+/* ===================================================
+   FOOTER
+=================================================== */
+footer {
+  background-color: var(--cinza-escuro);
+  width: 100%;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  font-size: small;
+  color: var(--branco);
+  padding: 10px;
+}
+
+/* ===================================================
+   MENU HAMBURGUER (mobile)
+=================================================== */
+
+/* Container do botão + menu */
+.navigation-wrapper {
+  position: fixed;
+  top: 3px;
+  right: 5px;
+  z-index: 1000;
+}
+
+/* Botão do menu */
+.navigation-wrapper label {
   position: relative;
-  margin-left: 0px;
-  margin-top: 10px;
-  margin-bottom:0px;
-  border-right: 2px solid rgba(255,255,255,.75);
-  font-size: 30px;
-  font-family: 'Roboto';
-  text-align: left;
-  white-space: nowrap;
-  overflow: hidden;
-  transform: translateY(-50%);
-  margin-top: 300px;
-  width: fit-content;
-  max-width: 100%;
+  border-radius: 0.3rem;
   z-index: 2;
+  transition: transform 0.35s ease-in;
 }
 
-.typewriter-animation {
-  animation:
-    typewriter 2s steps(30) 0.5s 1 normal both,
-    blinkingCursor 500ms steps(50) infinite normal;
+.navigation-wrapper .button {
+  background-color: transparent;
+  color: red;
+  cursor: pointer;
+  display: flex;
+  width: 3rem;
+  height: 3rem;
+  transition: 0.2s;
 }
 
-@keyframes typewriter {
-  from { width: 0; }
-  to { width: 51ch; }
+.navigation-wrapper .button:hover {
+  color: blue;
+  transform: scale(1.3);
+  font-weight: bold;
+  text-shadow: 0 0 5px rgba(0, 0, 255, 0.5), 0 0 10px rgba(0, 0, 255, 0.5);
+
 }
 
-@keyframes blinkingCursor {
-  from { border-right-color: rgba(255,255,255,.75); }
-  to { border-right-color: transparent; }
+.navigation-wrapper .button > i {
+  margin: auto;
+  transform: rotateZ(0turn);
+  transition: transform 0.2s ease-in-out;
 }
+
+/* Menu expandido */
+.navigation-wrapper .navigation {
+  position: fixed;
+  top: 4.5px;
+  right: 3.5rem;
+  height: 53px;
+  background-color: var(--branco);
+  backdrop-filter: blur(8px);
+  border-radius: 150px;
+  overflow: hidden;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.35s ease-in;
+  z-index: 1;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 0 10px;
+}
+
+.navigation-wrapper .navigation button {
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  font-family: sangue;
+  color: red;
+  padding: 0 20px;
+  margin: 0;
+  line-height: 60px;
+  display: block;
+  text-align: center;
+  transition: 0.2s;
+}
+
+.navigation-wrapper .navigation button:hover {
+  background-color: transparent;
+  transform: scale(1.3);
+  font-weight: 500;
+  color: red;
+  text-shadow: 0 0 5px rgba(255, 0, 0, 0.5), 0 0 10px rgba(255, 0, 0, 0.5);
+}
+
+/* Checkbox invisível */
+#toggleCheck {
+  display: none;
+}
+
+/* Menu ativo */
+#toggleCheck:checked ~ .navigation {
+  transform: scaleX(1);
+  transition: transform 0.35s cubic-bezier(0.5, -0.3, 0.5, 1.5);
+}
+
+#toggleCheck:checked ~ label .button {
+  background-color: transparent;
+  color: red;
+  transition: 0.2s ease-out;
+}
+
+#toggleCheck:checked ~ label .button:hover {
+  color: blue;
+  transform: scale(1.5);
+  text-shadow: 0 0 5px rgba(0, 0, 255, 0.5), 0 0 10px rgba(0, 0, 255, 0.5);
+
+}
+
+#toggleCheck:checked ~ label .button > i {
+  transform: rotateZ(0.5turn);
+}
+
+#toggleCheck:checked ~ label .button > i:before {
+  content: "\f00d";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+}
+#tst_cll{
+  background-color: #5dade2
+}
+#tst_cll.ativo{
+  background-color: aquamarine;
+}
+
+/*
+SHADER/SHADER OPACIDADE
+*/
+
 
 /* Shader canvas no fundo */
 #shader-container,
@@ -196,30 +318,94 @@ li a:hover{
   background-color: rgba(0, 0, 0, 0.3); /* ajuste a intensidade aqui */
   z-index: -1;
   pointer-events: none;
-}
-h3{
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    padding: 10px;
+
+/* ===================================================
+   RESPONSIVIDADE
+=================================================== */
+
+/* Desktop: estilo padrão já aplicado */
+
+/* estilos para desktop */
+@media (min-width: 1025px) or (max-width: 1440px) {
+  .navigation-wrapper {
+    display: none;
+  }
 }
 
+/* Tablet */
+@media (max-width: 768px) {
+  :root {
+    font-size: 18px;
+  }
 
-.flaticon img {
-  width: 60px;
+  nav.butao {
+    display: none;
+  }
+
+  .navigation-wrapper {
+    display: block;
+  }
+
+  .navigation-wrapper .navigation {
+    width: 26rem;
+  }
 }
 
-footer {
-  background-color: var(--cinza-escuro);
-  width: 100%;
-  text-align: center;
-  font-family: Arial, sans-serif;
-  font-size: small;
-  color: var(--branco);
-  padding: 10px;
+/* Celular */
+@media (max-width: 584px) {
+  :root {
+    font-size: 15px;
+  }
+
+  .navigation-wrapper .navigation {
+    width: 10rem;
+  }
+
+  .navigation-wrapper .navigation button {
+
+    font-size: 28px;
+    padding: 0 10px;
+  }
+
+  .navigation-wrapper {
+    top: 10px;
+  }
+
+  .navigation-wrapper .navigation {
+  position: fixed;
+  display: flex;
+
+  flex-direction: column;
+  height: 290px;
+  top: 4.5rem;
+  right: 0.5rem;
+  border-radius: 20px;
+  background-color: white;
+  overflow: hidden;
+  transform-origin: right;
+  transition: transform 0.35s ease-in;
+  z-index: 1;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 0 10px;
+  }
+
+}
+.navigation-wrapper .navigation {
+  opacity: 0;
+  transform: translateX(100%);
+  transition: all 0.4s ease-in-out;
+}
+
+#toggleCheck:checked ~ .navigation {
+  opacity: 1;
+  transform: translateX(0%);
+  transition: all 0.4s ease-in-out;
 }
 
 *:focus {
   outline: none !important;
   box-shadow: none !important;
 }
+
