@@ -32,9 +32,11 @@ async function main() {
   };
 
   const material = new THREE.ShaderMaterial({
-    fragmentShader: shaderCode,
-    uniforms
-  });
+  vertexShader,
+  fragmentShader: shaderCode,
+  uniforms
+});
+
 
   const geometry = new THREE.PlaneGeometry(2, 2);
   scene.add(new THREE.Mesh(geometry, material));
@@ -53,5 +55,10 @@ async function main() {
   requestAnimationFrame(animate);
   renderer.setSize(window.innerWidth, window.innerHeight);
 }
+const vertexShader = `
+  void main() {
+    gl_Position = vec4(position, 1.0);
+  }
+`;
 
 main();

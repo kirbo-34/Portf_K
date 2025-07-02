@@ -1,9 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
-@font-face {
-    font-family: 'Roboto';
-    src: url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-}
 
 /* ===================================================
    VARIÁVEIS GLOBAIS E FONTE PERSONALIZADA
@@ -32,8 +26,30 @@
   box-sizing: border-box;
 }
 
+/* Shader canvas no fundo */
+#shader-container,
+#shader-container canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Camada escura transparente sobre o shader */
+#escurecedor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3); /* ajuste a intensidade aqui */
+  z-index: 0;
+  pointer-events: none;
+}
 html, body {
-  height: 100%;
   margin: 0;
   padding: 0;
   display: flex;
@@ -68,14 +84,32 @@ p {
   padding-bottom: 10px;
 }
 
+.quadrado{
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  margin-top: 50px;
+  margin-left:275px;
+  text-align:justify;
+  width:700px;
+  height:300px;
+  background-color: var(--branco);
+  color:#333333;
+  overflow: hidden;
+  white-space: normal;
+  word-wrap: break-word;
+  border-radius: 15px;
+  z-index:1;
+
+}
 /* ===================================================
    HEADER E NAVEGAÇÃO TRADICIONAL
 =================================================== */
 header {
   display: flex;
   background-color: var(--cinza-medio);
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
   position: fixed;
   align-items: center;
   justify-content: space-between;
@@ -106,11 +140,10 @@ nav.butao button {
   letter-spacing: 3px;
   padding: 10px 15px;
   cursor: pointer;
-  transition: 0.2s;
+  transition: transform 0.2s ease, color 0.2s ease, text-shadow 0.2s ease;
 }
 
 nav.butao button:hover {
-  font-weight: 500;
   color: red;
   transform: scale(1.3);
   text-shadow: 0 0 5px rgba(255, 0, 0, 0.5), 0 0 10px rgba(255, 0, 0, 0.5);
@@ -121,7 +154,7 @@ nav.butao button:hover {
    SEÇÕES SPA
 =================================================== */
 #home, #projetos {
-  background-color: var(--cinza-claro);
+  background-color: purple;
   padding: 20px;
   font-size: 20px;
   letter-spacing: 2px;
@@ -138,7 +171,7 @@ nav.butao button:hover {
   scroll-margin-top: 70px;
   margin-top: 61px;
   width: 100%;
-  height: 100vh;
+  min-height: calc(100vh - 61px - 50px);
 }
 
 .page {
@@ -149,17 +182,83 @@ nav.butao button:hover {
   display: block;
 }
 
+
+
 /* ===================================================
    FOOTER
 =================================================== */
-footer {
+footer{
   background-color: var(--cinza-escuro);
   width: 100%;
+  height: 50px;
   text-align: center;
   font-family: Arial, sans-serif;
   font-size: small;
   color: var(--branco);
-  padding: 10px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+
+/* Contêiner dos botões */
+footer .galinha {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Estilo dos botões */
+.galinha .menu {
+  position: relative;
+  background: transparent;
+  border: 2.5px solid rgb(2, 27, 255);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  overflow: hidden;
+  font-size: 24px;
+  color: black;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+/* Ícones dentro dos botões */
+.galinha .menu i {
+  position: relative;
+  font-size: 26px;
+  z-index: 2;
+}
+
+/* Efeito de hover */
+.menu:hover {
+  color: white;
+}
+
+/* Animação de fundo com ::before */
+.menu::before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: rgb(2, 27, 255);
+  border-radius: 50%;
+  transform: scale(0);
+  transition: transform 0.5s ease-out;
+  z-index: 1;
+}
+
+/* Quando passa o mouse, cresce o fundo */
+.menu:hover::before {
+  transform: scale(1);
+}
+
+/* Efeito de clique */
+.menu:active i {
+  transform: scale(1.1);
 }
 
 /* ===================================================
@@ -229,6 +328,9 @@ footer {
   padding: 0 10px;
 }
 
+
+
+
 .navigation-wrapper .navigation button {
   background: transparent;
   border: none;
@@ -240,13 +342,12 @@ footer {
   line-height: 60px;
   display: block;
   text-align: center;
-  transition: 0.2s;
+  transition: transform 0.2s ease, color 0.2s ease, text-shadow 0.2s ease;
 }
 
 .navigation-wrapper .navigation button:hover {
   background-color: transparent;
   transform: scale(1.3);
-  font-weight: 500;
   color: red;
   text-shadow: 0 0 5px rgba(255, 0, 0, 0.5), 0 0 10px rgba(255, 0, 0, 0.5);
 }
@@ -284,40 +385,6 @@ footer {
   font-family: "Font Awesome 6 Free";
   font-weight: 900;
 }
-#tst_cll{
-  background-color: #5dade2
-}
-#tst_cll.ativo{
-  background-color: aquamarine;
-}
-
-/*
-SHADER/SHADER OPACIDADE
-*/
-
-
-/* Shader canvas no fundo */
-#shader-container,
-#shader-container canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: -2;
-  pointer-events: none;
-}
-
-/* Camada escura transparente sobre o shader */
-#escurecedor {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.3); /* ajuste a intensidade aqui */
-  z-index: -1;
-  pointer-events: none;
 
 /* ===================================================
    RESPONSIVIDADE
@@ -326,6 +393,7 @@ SHADER/SHADER OPACIDADE
 /* Desktop: estilo padrão já aplicado */
 
 /* estilos para desktop */
+
 @media (min-width: 1025px) or (max-width: 1440px) {
   .navigation-wrapper {
     display: none;
@@ -372,30 +440,30 @@ SHADER/SHADER OPACIDADE
   }
 
   .navigation-wrapper .navigation {
-  position: fixed;
-  display: flex;
+    position: fixed;
+    display: flex;
 
-  flex-direction: column;
-  height: 290px;
-  top: 4.5rem;
-  right: 0.5rem;
-  border-radius: 20px;
-  background-color: white;
-  overflow: hidden;
-  transform-origin: right;
-  transition: transform 0.35s ease-in;
-  z-index: 1;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 0 10px;
+    flex-direction: column;
+    height: 290px;
+    top: 4.5rem;
+    right: 0.5rem;
+    border-radius: 20px;
+    background-color: white;
+    overflow: hidden;
+    transform-origin: right;
+    transition: transform 0.35s ease-in;
+    z-index: 1;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 0 10px;
   }
-
 }
+
 .navigation-wrapper .navigation {
   opacity: 0;
   transform: translateX(100%);
-  transition: all 0.4s ease-in-out;
+  transition: all 0.40s ease-in-out;
 }
 
 #toggleCheck:checked ~ .navigation {
@@ -403,9 +471,3 @@ SHADER/SHADER OPACIDADE
   transform: translateX(0%);
   transition: all 0.4s ease-in-out;
 }
-
-*:focus {
-  outline: none !important;
-  box-shadow: none !important;
-}
-

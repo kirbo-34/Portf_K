@@ -1,72 +1,55 @@
-#ifdef GL_ES
-precision highp float;
-#endif
-
-uniform vec2 iResolution;
+// shader.frag
 uniform float iTime;
+uniform vec2 iResolution;
 
-float vort_speed = 1.;
-vec4 colour_1 = vec4(0.996078431,0.37254902,0.33333333,1.);
-vec4 colour_2 = vec4(0.,0.61568627,1.,1.);
-float mid_flash = 0.;
-float vort_offset = 0.;
+#define SPIN_ROTATION -2.0
+#define SPIN_SPEED 7.0
+#define OFFSET vec2(0.0)
+#define COLOUR_1 vec4(0.871, 0.267, 0.231, 1.0)
+#define COLOUR_2 vec4(0.0, 0.42, 0.706, 1.0)
+#define COLOUR_3 vec4(0.086, 0.137, 0.145, 1.0)
+#define CONTRAST 3.5
+#define LIGTHING 0.4
+#define SPIN_AMOUNT 0.25
+#define PIXEL_FILTER 745.0
+#define SPIN_EASE 1.0
+#define PI 3.14159265359
+#define IS_ROTATE false
 
-#define PIXEL_SIZE_FAC 700.
-#define BLACK 0.6*vec4(79./255.,99./255.,103./255.,1./0.6)
-
-vec4 easing(vec4 t, float power) {
-    return vec4(pow(t.x, power), pow(t.y, power), pow(t.z, power), pow(t.w, power));
-}
-
-vec4 effect(vec3 screen_coords, float scale) {
-    vec2 uv = screen_coords.xy;
-    uv = floor(uv * (PIXEL_SIZE_FAC/2.)) / (PIXEL_SIZE_FAC/2.);
-    uv /= scale;
+vec4 effect(vec2 screenSize, vec2 screen_coords) {
+    float pixel_size = length(screenSize.xy) / PIXEL_FILTER;
+    vec2 uv = (floor(screen_coords.xy*(1./pixel_size))*pixel_size - 0.5*screenSize.xy)/length(screenSize.xy) - OFFSET;
     float uv_len = length(uv);
-
-    float speed = iTime * vort_speed;
-    float new_pixel_angle = atan(uv.y, uv.x)
-        + (2.2 + 0.4 * min(6., speed)) * uv_len
-        - 1. - speed * 0.05 - min(6., speed) * speed * 0.02 + vort_offset;
-    vec2 mid = (iResolution.xy / length(iResolution.xy)) / 2.;
-    vec2 sv = vec2(
-        uv_len * cos(new_pixel_angle) + mid.x,
-        uv_len * sin(new_pixel_angle) + mid.y
-    ) - mid;
-
-    sv *= 30.;
-    speed = iTime * 6. * vort_speed + vort_offset + 5.;
-    vec2 uv2 = vec2(sv.x + sv.y);
-
-    for (int i = 0; i < 5; i++) {
-        uv2 += sin(max(sv.x, sv.y)) + sv;
-        sv += 0.5 * vec2(
-            cos(5.1123314 + 0.353 * uv2.y + speed * 0.131121),
-            sin(uv2.x - 0.113 * speed)
-        );
-        sv -= cos(sv.x + sv.y) - sin(sv.x * 0.711 - sv.y);
+    
+    float speed = (SPIN_ROTATION*SPIN_EASE*0.2);
+    if(IS_ROTATE){
+       speed = iTime * speed;
     }
-
-    float smoke_res = min(2., max(-2., 1.5 + length(sv) * 0.12 - 0.17 * (min(10., iTime * 1.2))));
-    if (smoke_res < 0.2) smoke_res = (smoke_res - 0.2) * 0.6 + 0.2;
-
-    float c1p = max(0., 1. - 2. * abs(1. - smoke_res));
-    float c2p = max(0., 1. - 2. * (smoke_res));
-    float cb = 1. - min(1., c1p + c2p);
-
-    vec4 ret_col = colour_1 * c1p + colour_2 * c2p + vec4(cb * BLACK.rgb, cb * colour_1.a);
-    float mod_flash = max(mid_flash * 0.8, max(c1p, c2p) * 5. - 4.4) + mid_flash * max(c1p, c2p);
-
-    return easing(ret_col * (1. - mod_flash) + mod_flash * vec4(1., 1., 1., 1.), 1.5);
-}
-
-void mainImage(out vec4 fragColor, in vec2 fragCoord) {
-    vec3 uv = vec3(fragCoord.xy / iResolution.xy, 0.);
-    uv -= .5;
-    uv.x *= iResolution.x / iResolution.y;
-    fragColor = effect(uv * vec3(1.,1.,0.), 2.);
+    speed += 302.2;
+    float new_pixel_angle = atan(uv.y, uv.x) + speed - SPIN_EASE*20.*(1.*SPIN_AMOUNT*uv_len + (1. - 1.*SPIN_AMOUNT));
+    vec2 mid = (screenSize.xy/length(screenSize.xy))/2.;
+    uv = (vec2((uv_len * cos(new_pixel_angle) + mid.x), (uv_len * sin(new_pixel_angle) + mid.y)) - mid);
+    
+    uv *= 30.;
+    speed = iTime*(SPIN_SPEED);
+    vec2 uv2 = vec2(uv.x+uv.y);
+    
+    for(int i=0; i < 5; i++) {
+        uv2 += sin(max(uv.x, uv.y)) + uv;
+        uv  += 0.5*vec2(cos(5.1123314 + 0.353*uv2.y + speed*0.131121),sin(uv2.x - 0.113*speed));
+        uv  -= 1.0*cos(uv.x + uv.y) - 1.0*sin(uv.x*0.711 - uv.y);
+    }
+    
+    float contrast_mod = (0.25*CONTRAST + 0.5*SPIN_AMOUNT + 1.2);
+    float paint_res = min(2., max(0.,length(uv)*(0.035)*contrast_mod));
+    float c1p = max(0.,1. - contrast_mod*abs(1.-paint_res));
+    float c2p = max(0.,1. - contrast_mod*abs(paint_res));
+    float c3p = 1. - min(1., c1p + c2p);
+    float light = (LIGTHING - 0.2)*max(c1p*5. - 4., 0.) + LIGTHING*max(c2p*5. - 4., 0.);
+    return (0.3/CONTRAST)*COLOUR_1 + (1. - 0.3/CONTRAST)*(COLOUR_1*c1p + COLOUR_2*c2p + vec4(c3p*COLOUR_3.rgb, c3p*COLOUR_1.a)) + light;
 }
 
 void main() {
-    mainImage(gl_FragColor, gl_FragCoord.xy);
+  vec2 uv = gl_FragCoord.xy;
+  gl_FragColor = effect(iResolution.xy, uv);
 }
