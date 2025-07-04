@@ -14,10 +14,7 @@
   --azul-claro: #5dade2;
 }
 
-@font-face {
-  font-family: sangue;
-  src: url("src/font/Kingdom - Pixel Font v1_3.ttf") format("truetype");
-}
+
 
 /* ===================================================
    RESET E CONFIGURAÇÕES GERAIS
@@ -34,7 +31,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 0;
+  z-index:0;
   pointer-events: none;
 }
 
@@ -86,6 +83,7 @@ p {
 
 .quadrado{
   align-items: center;
+  position:relative;
   justify-content: center;
   display: flex;
   margin-top: 50px;
@@ -93,14 +91,48 @@ p {
   text-align:justify;
   width:700px;
   height:300px;
-  background-color: var(--branco);
-  color:#333333;
+  background-color: #0000002f;
+  color:#fafafa;
   overflow: hidden;
   white-space: normal;
   word-wrap: break-word;
   border-radius: 15px;
   z-index:1;
+}
+.img {
+    border: 4px solid rgba(66, 66, 66, 0);
+    border-radius: 100px;
+    position: relative;
+    width: 200px;
+    height: 200px;
+    overflow: hidden; /* Garante que nada ultrapasse os cantos arredondados */
+}
 
+.img img {
+    width: 100%;
+    height: 100%;
+    border-radius: 99px;
+    position: absolute;
+    object-fit: cover;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.img .hover-img {
+    opacity: 0;
+    z-index: 2;
+}
+
+.img .default-img {
+    opacity: 1;
+    z-index: 1;
+}
+
+.img:hover .hover-img {
+    opacity: 1;
+}
+
+.img:hover .default-img {
+    opacity: 0;
 }
 /* ===================================================
    HEADER E NAVEGAÇÃO TRADICIONAL
@@ -154,7 +186,7 @@ nav.butao button:hover {
    SEÇÕES SPA
 =================================================== */
 #home, #projetos {
-  background-color: purple;
+  background-color: transparent;
   padding: 20px;
   font-size: 20px;
   letter-spacing: 2px;
@@ -197,6 +229,8 @@ footer{
   color: var(--branco);
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
+  position: relative;
+  z-index: 1;
 }
 
 
