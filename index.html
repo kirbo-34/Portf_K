@@ -1,105 +1,172 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <!-- =========================== -->
-  <!-- METADADOS E IMPORTAÇÕES -->
-  <!-- =========================== -->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-  <link rel="website icon" href="src/img/logo.png">
+  <!DOCTYPE html>
+  <html lang="pt-br">
+  <head>
+    <!-- =========================== -->
+    <!-- METADADOS E IMPORTAÇÕES -->
+    <!-- =========================== -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+      <link rel="stylesheet" href="style.css">
+    <link rel="website icon" href="src/img/logo.png">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
 
-<body>
-  <!-- =========================== -->
-  <!-- CABEÇALHO E NAVEGAÇÃO -->
-  <!-- =========================== -->
-    <div id="shader-container"></div>
-   <div id="escurecedor"></div> 
-   <script type="module" src="main.js"></script>
+  <body>
+    <!-- =========================== -->
+    <!-- CABEÇALHO E NAVEGAÇÃO -->
+    <!-- =========================== -->
+      <div id="shader-container"></div>
+    <div id="escurecedor"></div> 
+    <script type="module" src="main.js"></script>
+    <div class="loader" id="page-loader"></div>
+    <header>
+      <!-- Logo -->
+      <div class="flaticon">
+        <img src="" alt="Logo do site">
+      </div>
 
-  <header>
-    <!-- Logo -->
-    <div class="flaticon">
-      <img src="" alt="Logo do site">
-    </div>
+      <!-- Menu tradicional (desktop) -->
+      <div class="butoes">
+        <nav class="butao">
+          <button data-page="home">Home</button>
+          <button data-page="sobre">Sobre</button>
+          <button data-page="projetos">Projetos</button>
+          <button data-page="contato">Contato</button>
+        </nav>
+      </div>
 
-    <!-- Menu tradicional (desktop) -->
-    <div class="butoes">
-      <nav class="butao">
-        <button data-page="home">Home</button>
+      <!-- Menu hamburguer (mobile) -->
+      <div class="navigation-wrapper">
+        <input id="toggleCheck" type="checkbox" />
+        <label for="toggleCheck">
+          <div class="button" id="menuBtn">
+            <i class="fa-sharp-duotone fa-solid fa-bars"></i>
+          </div>
+        </label>
+        <nav class="navigation">
+          <button data-page="home">Home</button>
+          <button data-page="sobre">Sobre</button>
+          <button data-page="projetos">Projetos</button>
+          <button data-page="contato">Contato</button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- =========================== -->
+    <!-- CONTEÚDO PRINCIPAL        -->
+    <!-- =========================== -->
+    <main>
+      <section id="home" class="page">
+        <h2 style="font-size:30px; text-align:left; position: relative; z-index: 1; color: white;" class="typewriter">HOME</h2>
+        <p style="width: 700px; height: 200px;" class="quadrado">
+        Ola, este é meu portfolio, onde haverá minhas informações, meus projetos, meus contatos, e mais.<br> Acesse a nav-bar acima, para continuar.<br><br>Joao Arrais, programador back-end.</p>
+        <p style="font-size:30px; text-align:left; position: relative; z-index: 1; color: white; width:50ch;" class="typewriter">PRÉVIA:<br>Projetos em andamento, meus gostos, e mais!</p>
+        <div class="wrapper">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1477666250292-1419fac4c25c?auto=format&fit=crop&w=667&q=80&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D" alt="Mountain">
+      <div class="info">
+        <h1>Balatro</h1>
+        <p style="color:white; font:bold;">Um jogo rogue-like, de cartas, fichas de poker, e curingas!</p>
         <button data-page="sobre">Sobre</button>
-        <button data-page="projetos">Projetos</button>
-        <button data-page="contato">Contato</button>
-      </nav>
+      </div>
     </div>
 
-    <!-- Menu hamburguer (mobile) -->
-    <div class="navigation-wrapper">
-      <input id="toggleCheck" type="checkbox" />
-      <label for="toggleCheck">
-        <div class="button" id="menuBtn">
-          <i class="fa-sharp-duotone fa-solid fa-bars"></i>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1425342605259-25d80e320565?auto=format&fit=crop&w=750&q=80&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D" alt="Road">
+      <div class="info">
+        <h1>Bumbamat</h1>
+        <p style="color:white; font:bold;">Projeto em andamento sobre matematica aplicada na festa junina!</p>
+        <button data-page="projetos">Projetos</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1503249023995-51b0f3778ccf?auto=format&fit=crop&w=311&q=80&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D" alt="Protester">
+      <div class="info">
+        <h1>Stellar Odyssey</h1>
+        <p style="color:white; font:bold;">Atual TCC, sobre a astronomia aplicada em um jogo interativo!</p>
+        <button data-page="projetos">Projetos</button>
+      </div>
+    </div>
+  </div>
+  <!--
+        <div class="img">
+          <img src="imgs]/cantaloupe2.jpg" class="default-img" alt="Imagem padrão">
+          <img src="imgs]/nobitches.png" class="hover-img" alt="Imagem ao passar o mouse">
         </div>
-      </label>
-      <nav class="navigation">
-        <button data-page="home">Home</button>
-        <button data-page="sobre">Sobre</button>
-        <button data-page="projetos">Projetos</button>
-        <button data-page="contato">Contato</button>
-      </nav>
-    </div>
-  </header>
+        -->
+      </section>
 
-  <!-- =========================== -->
-  <!-- CONTEÚDO PRINCIPAL        -->
-  <!-- =========================== -->
-  <main>
-    <section id="home" class="page">
-      <h2>Home</h2>
-      <p style="font-size: 24px; text-align: center;" class="quadrado">
-      Ola, este é meu portfolio, onde haverá minhas informações, meus projetos, meus contatos, e mais. Acesse a nav-bar acima, para continuar.<br style="margin-top:20px;">Joao Arrais, programador back-end</p>
-      <p style="font-size:30px; text-align:left; position: relative; z-index: 1; color: white;">PRÉVIA:<br>Projetos em andamento, meus gostos, e mais!</p>
-      <div class="img">
-        <img src="/src/img/serj.jfif" class="default-img" alt="Imagem padrão">
-        <img src="/src/img/takian.jfif" class="hover-img" alt="Imagem ao passar o mouse">
+      <section id="sobre" class="page">
+        <h2 style="font-size:30px; text-align:left; position: relative; z-index: 1; color: white;">Sobre</h2>
+        <p style="font-size: 24px; justify-content: left;" class="quadrado">Meu nome é João Gabriel Soares Arrais, programador back-end, entusiasta de musicas de nu-metal ou vocaloids, fanático em balatro, e decidado a informatica.<br><br>Faço programas em:<br>   Java;<br>    Python;<br> C;<br> e um pouco de html/css.<br>Mesmo assim, sou aberto para desafios!</p>
+        <div style="display: flex; gap: 20px; align-items: flex-start; margin-top: 400px;">
+        <!-- Texto com quadrado -->
+        <p class="quadrado" style="font-size: 24px; width: 900px; height: 200px; margin-right: 200px;margin-bottom: 400px;">
+          No meu passatempo, estudo, programo ou jogo. Geralmente fico jogando Balatro, é um jogo super divertido, mais informações dele estão ao lado.
+        </p>
+
+        <!-- Card com imagem e botão -->
+        <div class="card">
+          <img src="imgs]/balatro.jpg" alt="Mountain">
+          <div class="info">
+            <h1>Balatro</h1>
+            <p style="color:white; font-weight: bold;">Um jogo rogue-like, de cartas, fichas de poker, e curingas!</p>
+            <a href="https://www.playbalatro.com" target="_blank" style="padding: 10px 20px; background-color: #222; color: white; border: none; border-radius: 5px; text-decoration: none; display: inline-block;">Ver mais</a>
+          </div>
+        </div>
       </div>
       
-    </section>
+        <p style="font-size: 24px; width: 900px; height: 200px; margin-right: 200px;" class="quadrado">Meu gosto musical eu gosto de falar que é que nem um cachorro vira-lata, é mistura de muitos. Mas se eu fosse escolher, seria nu-metal, vocaloids e jpop.</p>
+        <div style="display: flex; gap: 20px; align-items: flex-start; margin-top: 100px;">
+        <div class="card" style="margin-bottom: 200px;">
+          <img src="imgs]/3 dollar.jpg" alt="Mountain">
+          <div class="info">
+            <h1>Limp Bizkit</h1>
+            <p style="color:white; font-weight: bold;">Uma das bandas mais famosas de nu-metal, Limp Bizkit demonstra o que é a raiva de ser ignorado!</p>
+            <a href="https://open.spotify.com/intl-pt/artist/165ZgPlLkK7bf5bDoFc6Sb" target="_blank" style="padding: 10px 20px; background-color: #222; color: white; border: none; border-radius: 5px; text-decoration: none; display: inline-block;">Ver mais</a>
+          </div>
+        </div>
+            <div class="card">
+          <img src="imgs]/system.jpg" alt="Mountain">
+          <div class="info">
+            <h1>System of a Down</h1>
+            <p style="color:white; font-weight: bold;">Uma banda de nu-metal insana, SOAD expoe as verdades e protesta utilizando a arte!</p>
+            <a href="https://open.spotify.com/intl-pt/artist/5eAWCfyUhZtHHtBdNk56l1" target="_blank" style="padding: 10px 20px; background-color: #222; color: white; border: none; border-radius: 5px; text-decoration: none; display: inline-block;">Ver mais</a>
+          </div>
+        </div>
+        </div>
 
-    <section id="sobre" class="page">
-      <h2 style="font-size:30px; text-align:left; position: relative; z-index: 1; color: white;">Sobre</h2>
-      <p style="font-size: 24px; justify-content: left;" class="quadrado">Meu nome é João Gabriel Soares Arrais, programador back-end, entusiasta de musicas de nu-metal ou vocaloids, fanático em balatro, e decidado a informatica.</p>
-    </section>
+      
+      </section>
 
-    <section id="projetos" class="page">
-      <h2>Projetos</h2>
-      <p>Galinhas usam sons específicos para se comunicar...</p>
-      <p>Com um repertório cheio de sons únicos...</p>
-      <p>Galinhas são curiosas e inteligentes...</p>
-      <p>Apesar de serem aves, voam apenas curtas distâncias...</p>
-    </section>
+      <section id="projetos" class="page">
+        <h2>Projetos</h2>
+        <p>Galinhas usam sons específicos para se comunicar...</p>
+        <p>Com um repertório cheio de sons únicos...</p>
+        <p>Galinhas são curiosas e inteligentes...</p>
+        <p>Apesar de serem aves, voam apenas curtas distâncias...</p>
+      </section>
 
-    <section id="contato" class="page">
-      <h2>Contato</h2>
-      <p>Galeria de imagens será adicionada aqui.</p>
-    </section>
-  </main>
+      <section id="contato" class="page">
+        <h2>Contato</h2>
+        <p>Galeria de imagens será adicionada aqui.</p>
+      </section>
+    </main>
 
-  <!-- =========================== -->
-  <!-- RODAPÉ                    -->
-  <!-- =========================== -->
-  <footer>
-    🐔@Galinha.com.br
-  </footer>
+    <!-- =========================== -->
+    <!-- RODAPÉ                    -->
+    <!-- =========================== -->
+    <footer>
+      🐔@Galinha.com.br
+    </footer>
 
-  <!-- =========================== -->
-  <!-- SCRIPTS                     -->
-  <!-- =========================== -->
-  <script src="style.js"></script>
-</body>
-</html>
+    <!-- =========================== -->
+    <!-- SCRIPTS                     -->
+    <!-- =========================== -->
+    <script src="style.js"></script>
+  </body>
+  </html>
