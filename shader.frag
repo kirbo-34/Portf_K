@@ -1,55 +1,221 @@
-// shader.frag
-uniform float iTime;
-uniform vec2 iResolution;
 
-#define SPIN_ROTATION -2.0
-#define SPIN_SPEED 7.0
-#define OFFSET vec2(0.0)
-#define COLOUR_1 vec4(0.871, 0.267, 0.231, 1.0)
-#define COLOUR_2 vec4(0.0, 0.42, 0.706, 1.0)
-#define COLOUR_3 vec4(0.086, 0.137, 0.145, 1.0)
-#define CONTRAST 3.5
-#define LIGTHING 0.4
-#define SPIN_AMOUNT 0.25
-#define PIXEL_FILTER 745.0
-#define SPIN_EASE 1.0
-#define PI 3.14159265359
-#define IS_ROTATE false
+// Raymarching sketch about magic.
+// I've started with the three turning spells,
+// then a broken chain and finally a storm trapped in a sphere.
 
-vec4 effect(vec2 screenSize, vec2 screen_coords) {
-    float pixel_size = length(screenSize.xy) / PIXEL_FILTER;
-    vec2 uv = (floor(screen_coords.xy*(1./pixel_size))*pixel_size - 0.5*screenSize.xy)/length(screenSize.xy) - OFFSET;
-    float uv_len = length(uv);
-    
-    float speed = (SPIN_ROTATION*SPIN_EASE*0.2);
-    if(IS_ROTATE){
-       speed = iTime * speed;
-    }
-    speed += 302.2;
-    float new_pixel_angle = atan(uv.y, uv.x) + speed - SPIN_EASE*20.*(1.*SPIN_AMOUNT*uv_len + (1. - 1.*SPIN_AMOUNT));
-    vec2 mid = (screenSize.xy/length(screenSize.xy))/2.;
-    uv = (vec2((uv_len * cos(new_pixel_angle) + mid.x), (uv_len * sin(new_pixel_angle) + mid.y)) - mid);
-    
-    uv *= 30.;
-    speed = iTime*(SPIN_SPEED);
-    vec2 uv2 = vec2(uv.x+uv.y);
-    
-    for(int i=0; i < 5; i++) {
-        uv2 += sin(max(uv.x, uv.y)) + uv;
-        uv  += 0.5*vec2(cos(5.1123314 + 0.353*uv2.y + speed*0.131121),sin(uv2.x - 0.113*speed));
-        uv  -= 1.0*cos(uv.x + uv.y) - 1.0*sin(uv.x*0.711 - uv.y);
-    }
-    
-    float contrast_mod = (0.25*CONTRAST + 0.5*SPIN_AMOUNT + 1.2);
-    float paint_res = min(2., max(0.,length(uv)*(0.035)*contrast_mod));
-    float c1p = max(0.,1. - contrast_mod*abs(1.-paint_res));
-    float c2p = max(0.,1. - contrast_mod*abs(paint_res));
-    float c3p = 1. - min(1., c1p + c2p);
-    float light = (LIGTHING - 0.2)*max(c1p*5. - 4., 0.) + LIGTHING*max(c2p*5. - 4., 0.);
-    return (0.3/CONTRAST)*COLOUR_1 + (1. - 0.3/CONTRAST)*(COLOUR_1*c1p + COLOUR_2*c2p + vec4(c3p*COLOUR_3.rgb, c3p*COLOUR_1.a)) + light;
+// Leon 12 / 07 / 2017
+// using lines of code of IQ, Mercury, LJ, Koltes, Duke
+
+#define PI 3.14159
+#define TAU PI*2.
+#define t iTime
+
+// number of ray
+#define STEPS 30.
+
+// distance minimum for volume collision
+#define BIAS 0.001
+
+// distance minimum 
+#define DIST_MIN 0.01
+
+// rotation matrix
+mat2 rot (float a) { float c=cos(a),s=sin(a);return mat2(c,-s,s,c); }
+
+// distance field funtions
+float sdSphere (vec3 p, float r) { return length(p)-r; }
+float sdCylinder (vec2 p, float r) { return length(p)-r; }
+float sdTorus( vec3 p, vec2 s ) {
+  vec2 q = vec2(length(p.xz)-s.x,p.y);
+  return length(q)-s.y;
+}
+float sdBox( vec3 p, vec3 b ) {
+  vec3 d = abs(p) - b;
+  return min(max(d.x,max(d.y,d.z)),0.0) + length(max(d,0.0));
 }
 
-void main() {
-  vec2 uv = gl_FragCoord.xy;
-  gl_FragColor = effect(iResolution.xy, uv);
+// smooth minimum
+float smin (float a, float b, float r) {
+    float h = clamp(.5+.5*(b-a)/r,0.,1.);
+    return mix(b,a,h)-r*h*(1.-h);
+}
+
+// dat one line random function 
+float rand(vec2 co) { return fract(sin(dot(co*0.123,vec2(12.9898,78.233))) * 43758.5453); }
+
+// polar domain repetition
+vec3 moda (vec2 p, float count) {
+    float an = TAU/count;
+    float a = atan(p.y,p.x)+an/2.;
+    float c = floor(a/an);
+    a = mod(a,an)-an/2.;
+    return vec3(vec2(cos(a),sin(a))*length(p),c);
+}
+
+// the rythm of animation
+// change the 3. to have more or less spell
+float getLocalWave (float x) { return sin(-t+x*3.); }
+
+// displacement in world space of the animation
+float getWorldWave (float x) { return 1.-.1*getLocalWave(x); }
+
+// camera control
+vec3 camera (vec3 p) {
+    p.yz *= rot((PI*(iMouse.y/iResolution.y-.5)));
+    p.xz *= rot((PI*(iMouse.x/iResolution.x-.5)));
+    return p;
+}
+ 
+// position of chain
+vec3 posChain (vec3 p, float count) {
+    float za = atan(p.z,p.x);
+    vec3 dir = normalize(p);
+    
+    // domain repetition
+    vec3 m = moda(p.xz, count);
+    p.xz = m.xy;
+    float lw = getLocalWave(m.z/PI);
+    p.x -= 1.-.1*lw;
+    
+    // the chain shape
+    p.z *= 1.-clamp(.03/abs(p.z),0.,1.);
+    
+    // animation of breaking chain
+    float r1 = lw*smoothstep(.1,.5,lw);
+    float r2 = lw*smoothstep(.4,.6,lw);
+    p += dir*mix(0., 0.3*sin(floor(za*3.)), r1);
+    p += dir*mix(0., 0.8*sin(floor(za*60.)), r2);
+    
+    // rotate chain for animation smoothness
+    float a = lw * .3;
+    p.xy *= rot(a);
+    p.xz *= rot(a);
+    return p;
+}
+
+// distance function for spell
+float mapSpell (vec3 p) {
+    float scene = 1.;
+    float a = atan(p.z,p.x);
+    float l = length(p);
+    float lw = getLocalWave(a);
+    
+    // warping space into cylinder
+    p.z = l-1.+.1*lw;
+    
+    // torsade effect
+    p.yz *= rot(t+a*2.);
+    
+    // long cube shape
+    scene = min(scene, sdBox(p, vec3(10.,vec2(.25-.1*lw))));
+    
+    // long cylinder cutting the box (intersection difference)
+    scene = max(scene, -sdCylinder(p.zy, .3-.2*lw));
+    return scene;
+}
+
+// distance function for the chain
+float mapChain (vec3 p) {
+    float scene = 1.;
+    
+    // number of chain
+    float count = 21.;
+    
+    // size of chain
+    vec2 size = vec2(.1,.02);
+    
+    // first set of chains
+    float torus = sdTorus(posChain(p,count).yxz,size);
+    scene = smin(scene, torus,.1);
+    
+    // second set of chains
+    p.xz *= rot(PI/count);
+    scene = min(scene, sdTorus(posChain(p,count).xyz,size));
+    return scene;
+}
+
+// position of core stuff
+vec3 posCore (vec3 p, float count) {
+    
+    // polar domain repetition
+    vec3 m = moda(p.xz, count);
+    p.xz = m.xy;
+    
+    // linear domain repetition
+    float c = .2;
+    p.x = mod(p.x,c)-c/2.;
+    return p;
+}
+
+// distance field for the core thing in the center
+float mapCore (vec3 p) {
+    float scene = 1.;
+    
+    // number of torus repeated
+    float count = 10.;
+    float a = p.x*2.;
+    
+    // displace space
+    p.xz *= rot(p.y*6.);
+    p.xz *= rot(t);
+    p.xy *= rot(t*.5);
+    p.yz *= rot(t*1.5);
+    vec3 p1 = posCore(p, count);
+    vec2 size = vec2(.1,.2);
+    
+    // tentacles torus shape
+    scene = min(scene, sdTorus(p1.xzy*1.5,size));
+    
+    // sphere used for intersection difference with the toruses
+    scene = max(-scene, sdSphere(p,.6));
+    return scene;
+}
+
+void mainImage( out vec4 color, in vec2 coord )
+{
+    // raymarch camera
+	vec2 uv = (coord.xy-.5*iResolution.xy)/iResolution.y;
+    vec3 eye = camera(vec3(uv,-1.5));
+    vec3 ray = camera(normalize(vec3(uv,1.)));
+    vec3 pos = eye;
+    
+    // dithering
+	vec2 dpos = ( coord.xy / iResolution.xy );
+	vec2 seed = dpos + fract(iTime);
+    
+    float shade = 0.;
+    for (float i = 0.; i < STEPS; ++i) {
+        
+        // distance from the different shapes
+		float distSpell = min(mapSpell(pos), mapCore(pos));
+		float distChain = mapChain(pos);
+        float dist = min(distSpell, distChain);
+        
+        // hit volume
+        if (dist < BIAS) {
+            
+            // add shade
+            shade += 1.;
+            
+            // hit non transparent volume
+            if (distChain < distSpell) {
+                
+                // set shade and stop iteration
+                shade = STEPS-i-1.;
+                break;
+            }
+        }
+        
+        // dithering
+        dist=abs(dist)*(.8+0.2*rand(seed*vec2(i)));
+        
+        // minimum step
+        dist = max(DIST_MIN,dist);
+        
+        // raymarch
+        pos += ray*dist;
+    }
+    
+    // color from the normalized steps
+    color = vec4(shade/(STEPS-1.));
 }
