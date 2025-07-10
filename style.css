@@ -110,7 +110,7 @@ p {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgb(255, 255, 255); /* fundo claro */
+  background-color: rgb(0, 0, 0); /* fundo claro */
   display: none;
   align-items: center;
   justify-content: center;
@@ -136,7 +136,7 @@ p {
   content: "";
   width: 60px;
   aspect-ratio: 1;
-  --_g: no-repeat radial-gradient(farthest-side, #000 90%, #0000);
+  --_g: no-repeat radial-gradient(farthest-side, #ffffff 90%, #0000);
   background: var(--_g), var(--_g), var(--_g);
   background-size: 25% 25%;
   animation: l17 1s infinite;
@@ -169,21 +169,42 @@ p {
 
 
 
-.quadrado{
+.quadrado {
   align-items: center;
-  position:relative;
+  position: relative;
   justify-content: center;
   display: flex;
-  text-align:justify;
-  width:700px;
-  height:300px;
-  background-color: #0000002f;
-  color:#fafafa;
+  text-align: justify;
+  width: 90%;
+  padding: 15px;
+  margin: 40px auto;
+  box-sizing: border-box;
+  min-height: 200px;
+  background-color: transparent;
+  color: #fafafa;
   overflow: hidden;
   white-space: normal;
   word-wrap: break-word;
   border-radius: 15px;
-  z-index:1;
+  z-index: 1;
+}
+
+/* Novo container para o card e o texto */
+.balatro-container {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  justify-content: center;
+  margin: 40px auto;
+  max-width: 1200px;
+  flex-wrap: wrap;
+}
+
+/* Define que ambos ocupam espaço flexível */
+.balatro-container .card,
+.balatro-container .quadrado {
+  flex: 1 1 400px;
+  box-sizing: border-box;
 }
 
 
@@ -231,6 +252,7 @@ p {
   display: flex;
   width: 90%;
   justify-content: space-around;
+  flex-wrap: wrap; /* permite que os cards quebrem linha */
 }
 
 .card {
@@ -327,8 +349,10 @@ p {
 =================================================== */
 header {
   display: flex;
-  background-color: rgba(255, 255, 255, 0.05);
-
+  background-color: rgba(0, 0, 0, 0.4); /* fundo escuro translúcido */
+  backdrop-filter: blur(10px);         /* desfoca o conteúdo atrás */
+  -webkit-backdrop-filter: blur(10px); /* suporte Safari */
+  
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   position: fixed;
@@ -339,6 +363,7 @@ header {
   z-index: 1000;
   padding: 0;
 }
+
 
 .flaticon img {
   flex: 1;
@@ -409,9 +434,12 @@ nav.butao button:hover {
    FOOTER
 =================================================== */
 footer{
-  background-color: var(--cinza-escuro);
+  background-color: rgba(0, 0, 0, 0.4); /* fundo escuro translúcido */
+  backdrop-filter: blur(10px);         /* desfoca o conteúdo atrás */
+  -webkit-backdrop-filter: blur(10px); /* suporte Safari */
+  
   width: 100%;
-  height: 50px;
+  height: 25px;
   text-align: center;
   font-family: Arial, sans-serif;
   font-size: small;
@@ -424,65 +452,80 @@ footer{
 
 
 /* Contêiner dos botões */
-footer .galinha {
+.galinha {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
+  justify-content: center;   /* Centraliza horizontalmente */
+  align-items: center;       /* Alinha verticalmente se necessário */
+  gap: 20px;                 /* Espaço de 20px entre os botões */
+  margin-top: 40px;          /* Espaço acima, opcional */
+  flex-wrap: wrap;           /* Responsivo se tiver mais botões */
 }
 
-/* Estilo dos botões */
+/* Botão base */
 .galinha .menu {
+    text-decoration: none;
+  outline: none;
+  box-shadow: none;
+  margin-bottom: 20px;
   position: relative;
-  background: transparent;
-  border: 2.5px solid rgb(2, 27, 255);
-  width: 50px;
-  height: 50px;
+  background: white;              /* fundo fixo branco */
+  border: 2.5px solid rgb(0, 0, 0);
+  width: 65px;
+  height: 65px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  overflow: hidden;
-  font-size: 24px;
-  color: black;
-  transition: color 0.3s ease, transform 0.2s ease;
+  overflow: visible;
+  font-size: 28px;
+  color: black;                   /* ícone fixo preto */
+  transition: transform 0.2s ease;
 }
 
-/* Ícones dentro dos botões */
+/* Ícone */
 .galinha .menu i {
   position: relative;
-  font-size: 26px;
+  font-size: 30px;
   z-index: 2;
 }
 
-/* Efeito de hover */
+/* Apenas o aumento no hover */
 .menu:hover {
-  color: white;
+  transform: scale(1.07);
 }
 
-/* Animação de fundo com ::before */
-.menu::before {
-  content: "";
+/* Tooltip lateral */
+.menu::after {
+content: attr(data-tooltip);
   position: absolute;
-  width: 200%;
-  height: 200%;
-  background: rgb(2, 27, 255);
-  border-radius: 50%;
-  transform: scale(0);
-  transition: transform 0.5s ease-out;
-  z-index: 1;
+  top: 110%;                 /* abaixo do botão */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: black;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 8px;
+  white-space: nowrap;
+  font-size: 14px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 3;
 }
 
-/* Quando passa o mouse, cresce o fundo */
-.menu:hover::before {
-  transform: scale(1);
+/* Mostra tooltip no hover */
+.menu:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(5px); /* desliza para baixo */
+
 }
 
 /* Efeito de clique */
 .menu:active i {
   transform: scale(1.1);
 }
+
 
 /* ===================================================
    MENU HAMBURGUER (mobile)
@@ -642,30 +685,20 @@ footer .galinha {
   }
 }
 
-/* Celular */
+/* Estilo para telas pequenas (celulares) */
 @media (max-width: 584px) {
+
+
+
+  
   :root {
     font-size: 15px;
   }
 
   .navigation-wrapper .navigation {
     width: 10rem;
-  }
-
-  .navigation-wrapper .navigation button {
-
-    font-size: 28px;
-    padding: 0 10px;
-  }
-
-  .navigation-wrapper {
-    top: 10px;
-  }
-
-  .navigation-wrapper .navigation {
     position: fixed;
     display: flex;
-
     flex-direction: column;
     height: 290px;
     top: 4.5rem;
@@ -681,33 +714,33 @@ footer .galinha {
     gap: 10px;
     padding: 0 10px;
   }
-    .quadrado {
-    width: 90%;              /* usa 90% da largura da tela */
-    height: auto;            /* ajusta altura conforme o conteúdo */
-    font-size: 16px;         /* texto menor para telas pequenas */
-    padding: 15px;           /* espaçamento interno */
-    margin: 10px auto;       /* centraliza e separa dos outros */
-    flex-direction: column;  /* garante que o conteúdo verticalize corretamente */
+
+  .navigation-wrapper .navigation button {
+    font-size: 28px;
+    padding: 0 10px;
   }
-    .wrapper {
-    flex-direction: column;
-    gap: 20px;
-    align-items: center;
+
+  .navigation-wrapper {
+    top: 10px;
+  }
+
+  .quadrado {
+    font-size: 16px;
+    padding: 10px;
+  }
+
+
+    .balatro-container .card,
+  .balatro-container .quadrado {
+    width: 95%;
+    margin: 10px 0;
   }
 
   .card {
-    width: 90vw; /* cards ocupam quase toda a largura */
+    flex-direction: column;
+    margin-left: 0;
+    align-items: center;
+    width: 95%;
+    max-width: none;
   }
-}
-
-.navigation-wrapper .navigation {
-  opacity: 0;
-  transform: translateX(100%);
-  transition: all 0.40s ease-in-out;
-}
-
-#toggleCheck:checked ~ .navigation {
-  opacity: 1;
-  transform: translateX(0%);
-  transition: all 0.4s ease-in-out;
 }
