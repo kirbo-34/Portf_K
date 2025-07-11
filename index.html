@@ -12,211 +12,197 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-      <link rel="icon" href="ChatGPT Image 7 de jul. de 2025, 21_39_11.png" type="image/png">
+    <link rel="icon" href="/imgs/ChatGPT Image 7 de jul. de 2025, 21_39_11.png" type="image/png">
   </head>
 
   <body>
     <!-- =========================== -->
     <!-- CABEÇALHO E NAVEGAÇÃO -->
     <!-- =========================== -->
-      <div id="shader-container"></div>
+    <div id="shader-container"></div>
     <div id="escurecedor"></div> 
     <script type="module" src="main.js"></script>
     <div class="loader" id="page-loader"></div>
     <header>
-      <!-- Logo -->
-      <div class="flaticon">
-        <img src="ChatGPT Image 7 de jul. de 2025, 21_39_11.png" alt="Logo do site">
-      </div>
+    <!-- Logo -->
+    <div class="flaticon">
+      <img src="/imgs/ChatGPT Image 7 de jul. de 2025, 21_39_11.png" alt="Logo do site">
+    </div>
 
-      <!-- Menu tradicional (desktop) -->
-      <div class="butoes">
-        <nav class="butao">
-          <button data-page="home">Home</button>
-          <button data-page="sobre">Sobre</button>
-          <button data-page="projetos">Projetos</button>
-          <button data-page="contato">Contato</button>
-        </nav>
-      </div>
+    <!-- Menu tradicional (desktop) -->
+    <div class="butoes">
+      <nav class="butao">
+        <button data-page="home">Home</button>
+        <button data-page="sobre">Sobre</button>
+        <button data-page="projetos">Projetos</button>
+        <button data-page="contato">Contato</button>
+      </nav>
+    </div>
 
-      <!-- Menu hamburguer (mobile) -->
-      <div class="navigation-wrapper">
-        <input id="toggleCheck" type="checkbox" />
-        <label for="toggleCheck">
-          <div class="button" id="menuBtn">
-            <i class="fa-sharp-duotone fa-solid fa-bars"></i>
-          </div>
-        </label>
-        <nav class="navigation">
-          <button data-page="home">Home</button>
-          <button data-page="sobre">Sobre</button>
-          <button data-page="projetos">Projetos</button>
-          <button data-page="contato">Contato</button>
-        </nav>
-      </div>
-    </header>
+    <!-- Menu hamburguer (mobile) -->
+    <div class="navigation-wrapper">
+      <input id="toggleCheck" type="checkbox" />
+      <label for="toggleCheck">
+        <div class="button" id="menuBtn">
+          <i class="fa-sharp-duotone fa-solid fa-bars"></i>
+        </div>
+      </label>
+      <nav class="navigation">
+        <button data-page="home">Home</button>
+        <button data-page="sobre">Sobre</button>
+        <button data-page="projetos">Projetos</button>
+        <button data-page="contato">Contato</button>
+      </nav>
+    </div>
+  </header>
 
-    <!-- =========================== -->
-    <!-- CONTEÚDO PRINCIPAL        -->
-    <!-- =========================== -->
-    <main>
-      <section id="home" class="page">
-        <h2 style="font-size:30px; text-align:left; position: relative; z-index: 1; color: white;" class="typewriter">HOME</h2>
+  <!-- =========================== -->
+  <!-- CONTEÚDO PRINCIPAL        -->
+  <!-- =========================== -->
+  <main>
+    <section id="home" class="page">
+      <h2 style="font-size:30px; text-align:left; position: relative; z-index: 1; color: white;" class="typewriter">HOME</h2>
        <p style=" justify-content: left;" class="quadrado">
         Ola, este é meu portfolio, onde haverá minhas informações, meus projetos, meus contatos, e mais.<br> Acesse a nav-bar acima, para continuar.<br><br>Joao Arrais, programador back-end.</p>
-        <p style=" justify-content: left; height: 100px; margin-top: 100px;" class="quadrado" >PRÉVIA:<br>Projetos em andamento, meus gostos, e mais!</p>
-        <div class="wrapper">
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1477666250292-1419fac4c25c?auto=format&fit=crop&w=667&q=80&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D" alt="Mountain">
-      <div class="info">
-        <h1>Balatro</h1>
-        <p style="color:white; font:bold;">Um jogo rogue-like, de cartas, fichas de poker, e curingas!</p>
-        <button data-page="sobre">Sobre</button>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1425342605259-25d80e320565?auto=format&fit=crop&w=750&q=80&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D" alt="Road">
-      <div class="info">
-        <h1>Bumbamat</h1>
-        <p style="color:white; font:bold;">Projeto em andamento sobre matematica aplicada na festa junina!</p>
-        <button data-page="projetos">Projetos</button>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1503249023995-51b0f3778ccf?auto=format&fit=crop&w=311&q=80&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D" alt="Protester">
-      <div class="info">
-        <h1>Stellar Odyssey</h1>
-        <p style="color:white; font:bold;">Atual TCC, sobre a astronomia aplicada em um jogo interativo!</p>
-        <button data-page="projetos">Projetos</button>
-      </div>
-    </div>
-  </div>
-  <!--
-        <div class="img">
-          <img src="imgs]/cantaloupe2.jpg" class="default-img" alt="Imagem padrão">
-          <img src="imgs]/nobitches.png" class="hover-img" alt="Imagem ao passar o mouse">
+       <p style=" justify-content: left; height: 100px; margin-top: 100px;" class="quadrado" >PRÉVIA:<br>Projetos em andamento, meus gostos, e mais!</p>
+       <div class="wrapper">
+       <div class="card">
+        <img src="imgs/balatro.jpg" alt="Mountain">
+         <div class="info">
+          <h1>Balatro</h1>
+          <p style="color:white; font:bold;">Um jogo rogue-like, de cartas, fichas de poker, e curingas!</p>
+          <button data-page="sobre">Sobre</button>
         </div>
-        -->
-      </section>
+      </div>
 
-      <section id="sobre" class="page">
-        <h2 style="font-size:30px; text-align:left; position: relative; z-index: 1; color: white; font-weight: bold; left: 45%;">SOBRE</h2>
-<!-- Primeiro parágrafo: Apresentação -->
-<p class="quadrado">
-  Meu nome é João Gabriel Soares Arrais, programador back-end, entusiasta de músicas de nu-metal ou vocaloids, fanático em Balatro, e dedicado à informática.<br><br>
-  Faço programas em:<br>
-  Java;<br>
-  Python;<br>
-  C;<br>
-  e um pouco de HTML/CSS.<br>
-  Mesmo assim, sou aberto para desafios!
-</p>
+       <div class="card">
+        <img src="/imgs/bumbamat.jpg" alt="Road">
+         <div class="info">
+          <h1>Bumbamat</h1>
+          <p style="color:white; font:bold;">Projeto em andamento sobre matematica aplicada na festa junina!</p>
+          <button data-page="projetos">Projetos</button>
+        </div>
+      </div>
 
-<!-- Seção Balatro com card e texto ao lado (ou embaixo no celular) -->
-<div class="balatro-container">
-  <!-- Card com imagem e botão -->
-  <div class="card">
-    <img src="balatro.jpg" alt="Mountain">
-    <div class="info">
-      <h1>Balatro</h1>
-      <p style="margin-top: 100px; color: white; font-weight: bold;">
-        Um jogo rogue-like, de cartas, fichas de poker, e curingas!
+       <div class="card">
+        <img src="/imgs/stella.PNG" alt="Protester">
+         <div class="info">
+          <h1>Stellar Odyssey</h1>
+          <p style="color:white; font:bold;">Atual TCC, sobre a astronomia aplicada em um jogo interativo!</p>
+          <button data-page="projetos">Projetos</button>
+        </div>
+      </div>
+    </div>
+
+    </section>
+
+    <section id="sobre" class="page">
+      <h2 style="font-size:30px; text-align:left; position: relative; z-index: 1; color: white; font-weight: bold; left: 45%;">SOBRE</h2>
+
+      <p class="quadrado">
+      Meu nome é João Gabriel Soares Arrais, programador back-end, entusiasta de músicas de nu-metal ou vocaloids, fanático em Balatro, e dedicado à informática.<br><br>
+      Faço programas em:<br>
+      Java;<br>
+      Python;<br>
+      C;<br>
+      e um pouco de HTML/CSS.<br>
+      Mesmo assim, sou aberto para desafios!
       </p>
-      <a href="https://www.playbalatro.com" target="_blank"
-         style="padding: 10px 20px; background-color: #222; color: white; border: none; border-radius: 5px; text-decoration: none; display: inline-block;">
-        Ver mais
-      </a>
+      <div class="balatro-container">
+      <div class="card">
+        <img src="/imgs/balatro.jpg" alt="Mountain">
+        <div class="info">
+          <h1>Balatro</h1>
+          <p style="margin-top: 100px; color: white; font-weight: bold;">
+          Um jogo rogue-like, de cartas, fichas de poker, e curingas!
+          </p>
+          <a href="https://www.playbalatro.com" target="_blank"
+          style="padding: 10px 20px; background-color: #222; color: white; border: none; border-radius: 5px; text-decoration: none; display: inline-block;">
+          Ver mais
+        </a>
+      </div>
     </div>
-  </div>
-
-  <!-- Texto ao lado (ou abaixo) do card -->
-  <p class="quadrado">
+    <p class="quadrado">
     No meu passatempo, estudo, programo ou jogo. Geralmente fico jogando Balatro, é divertido. Mais informações abaixo.
-  </p>
-</div>
-
-</div>
+    </p>
+    </div>
 
       
-        <p style=" justify-content: left; margin-top: 100px;" class="quadrado">Meu gosto musical eu gosto de falar que é que nem um cachorro vira-lata, é mistura de muitos.<br> Mas se eu fosse escolher, seria nu-metal, vocaloids e jpop.</p>
-        <div style="display: flex; gap: 20px; align-items: flex-start;">
-        <div class="card" style="margin-bottom: 200px;">
-          <img src="limp.jpg" alt="Mountain">
-          <div class="info">
-            <h1>Limp Bizkit</h1>
-            <p style="color:white; font-weight: bold;">Uma das bandas mais famosas de nu-metal, Limp Bizkit demonstra o que é a raiva de ser ignorado!</p>
-            <a href="https://open.spotify.com/intl-pt/artist/165ZgPlLkK7bf5bDoFc6Sb" target="_blank" style="padding: 10px 20px; background-color: #222; color: white; border: none; border-radius: 5px; text-decoration: none; display: inline-block;">Ver mais</a>
+    <p style=" justify-content: left; margin-top: 100px;" class="quadrado">Meu gosto musical eu gosto de falar que é que nem um cachorro vira-lata, é mistura de muitos.<br> Mas se eu fosse escolher, seria nu-metal, vocaloids e jpop.</p>
+    <div style="display: flex; gap: 20px; align-items: flex-start;">
+      <div class="card" style="margin-bottom: 200px;">
+        <img src="/imgs/limp.jpg" alt="Mountain">
+        <div class="info">
+          <h1>Limp Bizkit</h1>
+          <p style="color:white; font-weight: bold;">Uma das bandas mais famosas de nu-metal, Limp Bizkit demonstra o que é a raiva de ser ignorado!</p>
+          <a href="https://open.spotify.com/intl-pt/artist/165ZgPlLkK7bf5bDoFc6Sb" target="_blank" style="padding: 10px 20px; background-color: #222; color: white; border: none; border-radius: 5px; text-decoration: none; display: inline-block;">Ver mais</a>
           </div>
         </div>
-            <div class="card">
-          <img src="system.jpg" alt="Mountain">
-          <div class="info">
-            <h1>System of a Down</h1>
-            <p style="color:white; font-weight: bold;">Uma banda de nu-metal insana, SOAD expoe as verdades e protesta utilizando a arte!</p>
-            <a href="https://open.spotify.com/intl-pt/artist/5eAWCfyUhZtHHtBdNk56l1" target="_blank" style="padding: 10px 20px; background-color: #222; color: white; border: none; border-radius: 5px; text-decoration: none; display: inline-block;">Ver mais</a>
+      <div class="card">
+        <img src="/imgs/system.jpg" alt="Mountain">
+        <div class="info">
+          <h1>System of a Down</h1>
+          <p style="color:white; font-weight: bold;">Uma banda de nu-metal insana, SOAD expoe as verdades e protesta utilizando a arte!</p>
+          <a href="https://open.spotify.com/intl-pt/artist/5eAWCfyUhZtHHtBdNk56l1" target="_blank" style="padding: 10px 20px; background-color: #222; color: white; border: none; border-radius: 5px; text-decoration: none; display: inline-block;">Ver mais</a>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section id="projetos" class="page">
+      <h2 style="font-size:30px; text-align:left; position: relative; z-index: 1; color: white; font-weight: bold; left: 45%;">PROJETOS</h2>
+      <p style="font-size: 24px; justify-content: left; left: 10%;" class="quadrado">A maioria dos projetos vão ser encerrados em meados de outubro/dezembro.</p>
+      <div class="wrapper">
+        <div class="card">
+        <img src="/imgs/stella.PNG" alt="Mountain">
+        <div class="info">
+          <h1>Stellar Odyssey</h1>
+          <p style="color:white; font:bold;">Stellar Odyssey é um jogo de plataforma, com a finalidade de ensinar a astrologia de maneira eficaz e divertida!</p>
+          <a>Em andamento</a>
         </div>
+      </div>
 
-      
-      </section>
+        <div class="card">
+        <img src="/imgs/bumbamat.jpg" alt="Road">
+        <div class="info">
+          <h1>Bumbamat</h1>
+          <p style="color:white; font:bold;">Bumbamat tem a finalidade de expor a matematica financeira que implicitamente existe na festa junina!</p>
+          <a>Em andamento</a>
+        </div>
+      </div>
 
-      <section id="projetos" class="page">
-    <h2 style="font-size:30px; text-align:left; position: relative; z-index: 1; color: white; font-weight: bold; left: 45%;">PROJETOS</h2>
-    <p style="font-size: 24px; justify-content: left; left: 10%;" class="quadrado">A maioria dos projetos vão ser encerrados em meados de outubro/dezembro.</p>
-     <div class="wrapper">
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1477666250292-1419fac4c25c?auto=format&fit=crop&w=667&q=80&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D" alt="Mountain">
-      <div class="info">
-        <h1>Stellar Odyssey</h1>
-        <p style="color:white; font:bold;">Stellar Odyssey é um jogo de plataforma, com a finalidade de ensinar a astrologia de maneira eficaz e divertida!</p>
-        <a>Em andamento</a>
+      <div class="card">
+        <img src="/imgs/ChatGPT Image 11 de jul. de 2025, 10_38_17 (1).png" alt="Protester">
+        <div class="info">
+          <h1>LibOnline</h1>
+          <p style="color:white; font:bold;">LibOnline tem o objetivo de possibilitar a tradução imediata de sinais de libras por meio de gravaçoes ou streamings de video</p>
+          <a>Em andamento</a>
+        </div>
       </div>
     </div>
+    </section>
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1425342605259-25d80e320565?auto=format&fit=crop&w=750&q=80&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D" alt="Road">
-      <div class="info">
-        <h1>Bumbamat</h1>
-        <p style="color:white; font:bold;">Bumbamat tem a finalidade de expor a matematica financeira que implicitamente existe na festa junina!</p>
-        <a>Em andamento</a>
+    <section id="contato" class="page">
+      <h2 style="font-size:30px; text-align:left; position: relative; z-index: 1; color: white; font-weight: bold; left: 44%;">CONTATOS</h2>
+      <p style="font-size: 24px; right: 5%;" class="quadrado">Você pode me contatar caso queira ajuda ou até interesse em contratar.</p>
+      <div class="galinha">
+        <a class="menu" data-tooltip="(94)98180-0317" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a class="menu" data-tooltip="s.arrais@acad.ifma.edu.br"href="email.html"><i class="fas fa-envelope"></i></a>
+        <a class="menu" data-tooltip="kirbo-34" href="https://github.com/kirbo-34" target="_blank"><i class="fa-brands fa-github"></i></a>
       </div>
-    </div>
+    </section>
+  </main>
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1503249023995-51b0f3778ccf?auto=format&fit=crop&w=311&q=80&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D" alt="Protester">
-      <div class="info">
-        <h1>LibOnline</h1>
-        <p style="color:white; font:bold;">LibOnline tem o objetivo de possibilitar a tradução imediata de sinais de libras por meio de gravaçoes ou streamings de video</p>
-        <a>Em andamento</a>
-      </div>
-    </div>
-  </div>
-      </section>
+<!-- =========================== -->
+<!-- RODAPÉ                    -->
+<!-- =========================== -->
+  <footer style="font-size: 20px; font-style: italic;">
+    Joao Arrais - programador back-end
+  </footer>
 
-      <section id="contato" class="page">
-        <h2 style="font-size:30px; text-align:left; position: relative; z-index: 1; color: white; font-weight: bold; left: 44%;">CONTATOS</h2>
-        <p style="font-size: 24px; right: 5%;" class="quadrado">Você pode me contatar caso queira ajuda ou até interesse em contratar.</p>
-        <div class="galinha">
-      <a class="menu" data-tooltip="(94)98180-0317" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-      <a class="menu" data-tooltip="s.arrais@acad.ifma.edu.br"href="email.html"><i class="fas fa-envelope"></i></a>
-      <a class="menu" data-tooltip="kirbo-34" href="https://github.com/kirbo-34" target="_blank"><i class="fa-brands fa-github"></i></a>
-    </div>
-      </section>
-    </main>
-
-    <!-- =========================== -->
-    <!-- RODAPÉ                    -->
-    <!-- =========================== -->
-    <footer style="font-size: 20px; font-style: italic;">
-      Joao Arrais - programador back-end
-    </footer>
-
-    <!-- =========================== -->
-    <!-- SCRIPTS                     -->
-    <!-- =========================== -->
-    <script src="style.js"></script>
+<!-- =========================== -->
+<!-- SCRIPTS                     -->
+<!-- =========================== -->
+  <script src="style.js"></script>
   </body>
   </html>
